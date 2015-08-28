@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xml;charset=%site_encoding%" />
+    <title>%site_title%</title>
+    <link rel="stylesheet" type="text/css" href="/templates/%site_template%/styles/main.css" />
+    <link rel="stylesheet" type="text/css" href="/templates/%site_template%/styles/header.css" />
+    <link rel="stylesheet" type="text/css" href="/templates/%site_template%/styles/menu.css" />
+    <link rel="stylesheet" type="text/css" href="/templates/%site_template%/styles/page.css" />
+    <link rel="stylesheet" type="text/css" href="/templates/%site_template%/styles/sidebar.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <h1>
+          <a href="%site_url%">%site_title%</a>
+        </h1>
+        <p>%site_description%</p>
+      </div>
+      <div id="navbar">
+        %block_menu%
+      </div>
+      <div id="middle">
+        %block_page%
+        %block_sidebar%
+      </div>
+      <div id="footer">
+        %block_footer%
+      </div>
+    </div>
+  </body>
+</html>
