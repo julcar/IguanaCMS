@@ -1,0 +1,12 @@
+site_url=http://example.org
+site_title=Iguana CMS
+site_description=Keep it simple, keep it light
+site_admin=Julio Carchi
+site_email=contact@example.org
+site_encoding=UTF-8
+site_template=Default
+site_language=es-ES
+site_timezone=-5
+site_index_type=page
+site_index_page=1
+site_index_module=blog
