@@ -9,12 +9,12 @@
 'Paths block
 '##########################
 
-CONST basePath$ = "E:\WebHost\"
+CONST basePath$ = "\"
 CONST rootPath$ = basePath$ & "root\"
 CONST tempPath$ = basePath$ & "temp\"
 CONST dataPath$ = basePath$ & "data\"
-CONST SQLitePath$ = "E:\sqlite\sqlite3.exe"
-CONST databasePath$ = dataPath$ & "database.s3db"
+'CONST SQLitePath$ = "\sqlite\sqlite3.exe"
+'CONST databasePath$ = dataPath$ & "database.s3db"
 
 '##############################
 'Includes block
