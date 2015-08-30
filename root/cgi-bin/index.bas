@@ -9,12 +9,10 @@
 'Paths block
 '##########################
 
-CONST basePath$ = "\"
+CONST basePath$ = "E:\IguanaCMS\"
 CONST rootPath$ = basePath$ & "root\"
 CONST tempPath$ = basePath$ & "temp\"
 CONST dataPath$ = basePath$ & "data\"
-'CONST SQLitePath$ = "\sqlite\sqlite3.exe"
-'CONST databasePath$ = dataPath$ & "database.s3db"
 
 '##############################
 'Includes block
@@ -24,7 +22,6 @@ CONST dataPath$ = basePath$ & "data\"
 '$INCLUDE: "core/strings.bas"
 '$INCLUDE: "core/request.bas"
 '$INCLUDE: "core/settings.bas"
-'$INCLUDE: "core/data.bas"
 '$INCLUDE: "core/pages.bas"
 '$INCLUDE: "core/modules.bas"
 '$INCLUDE: "core/init.bas"
