@@ -1,4 +1,5 @@
 FUNCTION ReadFile$ (filePath$)
+  DIM fFile, fileContent$
   fFile = FREEFILE
   OPEN filePath$ FOR INPUT AS #fFile
   fileContent$ = ""
@@ -15,15 +16,8 @@ SUB DeleteFile (filePath$)
   KILL (filePath$)
 END SUB
 
-FUNCTION WriteFile (filePath$, fileContent$)
-  fFile = FREEFILE
-  OPEN filePath$ FOR OUTPUT AS #fFile
-  PRINT #fFile, fileContent$
-  CLOSE #fFile
-  WriteFile = 0
-END FUNCTION
-
-FUNCTION checkFileExists(filePath$)
+FUNCTION checkFileExists (filePath$)
+  DIM fileContent$
   fileContent$ = ReadFile$(filePath$)
   IF LEN(fileContent$) > 0 THEN
     'File exist
@@ -33,4 +27,14 @@ FUNCTION checkFileExists(filePath$)
     checkFileExists = 1
   END IF
   fileContent$ = ""
+END FUNCTION
+
+FUNCTION WriteFile (filePath$, fileContent$)
+  DIM fFile
+  fFile = FREEFILE
+  OPEN filePath$ FOR OUTPUT AS #fFile
+  PRINT #fFile, fileContent$
+  CLOSE #fFile
+  'Return write result
+  WriteFile = checkFileExists(filePath$)
 END FUNCTION
