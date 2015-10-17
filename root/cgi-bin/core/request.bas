@@ -1,4 +1,5 @@
 FUNCTION ReadStdin$
+  DIM numChars, postQuery$
   IF ENVIRON$("REQUEST_METHOD") = "POST" THEN
     numChars = VAL(ENVIRON$("CONTENT_LENGTH"))
     postQuery$ = INPUT$(numChars)
