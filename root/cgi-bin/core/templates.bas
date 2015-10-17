@@ -1,5 +1,3 @@
-DECLARE FUNCTION tplParser$(tplContent$)
-
 FUNCTION blockParser$(blockName$)
   'FIXME: checkfileExists()
   blockParser$ = tplParser$(ReadFile$(tplPath$ & blockName$ & ".html"))
@@ -16,6 +14,10 @@ FUNCTION keyParser$(query$, value$)
     CASE "system"
       'keyParser$ = systemVars$(value$)
       keyParser$ = ""
+    CASE "component"
+      keyParser$ = loadComponent$(value$)
+    CASE "user"
+      keyParser$ = loadSession$(value$, QueryString$("session"))
     CASE "querystring"
       keyParser$ = QueryString$(value$)
     CASE "post"
