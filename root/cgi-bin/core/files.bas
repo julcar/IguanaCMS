@@ -8,6 +8,7 @@ FUNCTION ReadFile$ (filePath$)
   WEND
   CLOSE #fFile
   ReadFile$ = fileContent$
+  fileContent$ = ""
 END FUNCTION
 
 SUB DeleteFile (filePath$)
@@ -20,4 +21,16 @@ FUNCTION WriteFile (filePath$, fileContent$)
   PRINT #fFile, fileContent$
   CLOSE #fFile
   WriteFile = 0
+END FUNCTION
+
+FUNCTION checkFileExists(filePath$)
+  fileContent$ = ReadFile$(filePath$)
+  IF LEN(fileContent$) > 0 THEN
+    'File exist
+    checkFileExists = 0
+  ELSE
+    'File does not exists or is empty
+    checkFileExists = 1
+  END IF
+  fileContent$ = ""
 END FUNCTION
