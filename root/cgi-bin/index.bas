@@ -4,6 +4,8 @@
 'Compile it with FreeBasic 0.24 beta
 '###############################################################################
 
+OPTION EXPLICIT
+
 'DECLARE SUB SendHeaders()
 'CALL SendHeaders()
 
