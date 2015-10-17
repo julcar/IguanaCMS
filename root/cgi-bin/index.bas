@@ -3,19 +3,28 @@
 'Version 0.0.1 alpha
 'Compile it with FreeBasic 0.24 beta
 '###############################################################################
+
 'DECLARE SUB SendHeaders()
 'CALL SendHeaders()
-'##########################
-'Paths block
-'##########################
 
-CONST basePath$ = "E:\IguanaCMS\"
+'##############################
+'Paths block
+'##############################
+
+CONST basePath$ = "D:\IguanaCMS-master\"
 CONST rootPath$ = basePath$ & "root\"
 CONST tempPath$ = basePath$ & "temp\"
 CONST dataPath$ = basePath$ & "data\"
 
 '##############################
-'Includes block
+'Template initialization block
+'##############################
+
+COMMON SHARED tplPath$
+DECLARE FUNCTION tplParser$(tplContent$)
+
+'##############################
+'Core includes block
 '##############################
 
 '$INCLUDE: "core/files.bas"
@@ -24,13 +33,13 @@ CONST dataPath$ = basePath$ & "data\"
 '$INCLUDE: "core/settings.bas"
 '$INCLUDE: "core/pages.bas"
 '$INCLUDE: "core/modules.bas"
+'$INCLUDE: "core/components.bas"
 '$INCLUDE: "core/init.bas"
 
 '##############################
 'Templates block
 '##############################
 
-COMMON SHARED tplPath$
 tplPath$ = rootPath$ & "templates\" & getSettings$("site_template") & "\"
 '$INCLUDE: "core/templates.bas"
 
