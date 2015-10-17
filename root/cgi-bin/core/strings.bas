@@ -1,4 +1,5 @@
 FUNCTION SplitVar$ (strQuery$, arg$, delimiter$)
+  DIM results$, strVal$
   result$ = ""
   IF INSTR(strQuery$, arg$) <> 0 THEN
     strVal$ = MID$(strQuery$, INSTR(strQuery$, arg$), LEN(strQuery$))
@@ -12,6 +13,7 @@ FUNCTION SplitVar$ (strQuery$, arg$, delimiter$)
 END FUNCTION
 
 FUNCTION UnEscape$ (strQuery$)
+  DIM result$, char$, value$
   result$ = ""
   FOR i = 1 TO LEN(strQuery$)
     char$ = MID$(strQuery$, i, 1)
@@ -31,6 +33,7 @@ FUNCTION UnEscape$ (strQuery$)
 END FUNCTION
 
 FUNCTION Replace$ (strQuery$, lookFor$, replaceWith$)
+  DIM result$, foundPos, startPos, nextPos, strLeft$, strRight$
   result$ = strQuery$
   DO
     foundPos = INSTR(result$, lookFor$)
@@ -48,6 +51,7 @@ FUNCTION Replace$ (strQuery$, lookFor$, replaceWith$)
 END FUNCTION
 
 FUNCTION RandomString$ (strLength)
+  DIM arrayPos, currentChar, result$
   DIM arrayChars(0 TO 36)
   arrayPos = 0
   currentChar = 48
