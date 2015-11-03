@@ -51,7 +51,7 @@ FUNCTION Replace$ (strQuery$, lookFor$, replaceWith$)
 END FUNCTION
 
 FUNCTION RandomString$ (strLength)
-  DIM arrayPos, currentChar, result$
+  DIM arrayPos, currentChar, result$, i
   DIM arrayChars(0 TO 36)
   arrayPos = 0
   currentChar = 48
