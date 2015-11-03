@@ -1,5 +1,5 @@
 FUNCTION SplitVar$ (strQuery$, arg$, delimiter$)
-  DIM results$, strVal$
+  DIM result$, strVal$
   result$ = ""
   IF INSTR(strQuery$, arg$) <> 0 THEN
     strVal$ = MID$(strQuery$, INSTR(strQuery$, arg$), LEN(strQuery$))
@@ -13,7 +13,7 @@ FUNCTION SplitVar$ (strQuery$, arg$, delimiter$)
 END FUNCTION
 
 FUNCTION UnEscape$ (strQuery$)
-  DIM result$, char$, value$
+  DIM result$, char$, value$, i
   result$ = ""
   FOR i = 1 TO LEN(strQuery$)
     char$ = MID$(strQuery$, i, 1)
