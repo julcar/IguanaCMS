@@ -1,11 +1,11 @@
 FUNCTION ReadFile$ (filePath$)
-  DIM fFile, fileContent$
+  DIM fFile, fileContent$, currentLine$
   fFile = FREEFILE
   OPEN filePath$ FOR INPUT AS #fFile
   fileContent$ = ""
   WHILE NOT EOF(fFile)
-    LINE INPUT #fFile, line$
-    fileContent$ = fileContent$ + line$ + CHR$(10)
+    LINE INPUT #fFile, currentLine$
+    fileContent$ = fileContent$ + currentLine$ + CHR$(10)
   WEND
   CLOSE #fFile
   ReadFile$ = fileContent$
