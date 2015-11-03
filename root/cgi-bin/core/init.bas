@@ -5,6 +5,7 @@ SUB SendHeaders()
 END SUB
 
 SUB InitLoad()
+  DIM PrintError, i
   'Just to see if we need to init a page or a module
   'If is our built-in pages module then let him work
   'If is any other module then load it
