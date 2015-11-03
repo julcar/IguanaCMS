@@ -28,7 +28,7 @@ FUNCTION keyParser$(query$, value$)
 END FUNCTION
 
 FUNCTION tplParser$(tplContent$)
-  DIM char$, strCommand$, leftKey$, rightKey$, strQuery$, strOutput$
+  DIM char$, strCommand$, leftKey$, rightKey$, strQuery$, strOutput$, i
   strOutput$ = ""
   FOR i = 1 TO LEN(tplContent$)
     char$ = MID$(tplContent$, i, 1)
