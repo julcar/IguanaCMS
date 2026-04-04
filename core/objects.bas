@@ -9,7 +9,7 @@ SUB CreateProperty(ArrayProperties() AS DataField, PropertyName AS STRING, Prope
   END WITH
 END SUB
 
-FUNCTION ReadProperty(ArrayProperties() AS DataField, PropertyName AS STRING) AS STRING
+FUNCTION ReadProperty(ArrayProperties() AS DataField, PropertyName AS STRING, ReturnNameOnFail AS LONG = 0) AS STRING
   DIM Count AS LONG = UBOUND(ArrayProperties)
   IF Count >= 0 THEN
     FOR i AS LONG = 0 TO Count
@@ -19,11 +19,9 @@ FUNCTION ReadProperty(ArrayProperties() AS DataField, PropertyName AS STRING) AS
           EXIT FOR
         END IF
       END WITH
-#IF 0
-      IF i = Count THEN
+      IF i = Count AND ReturnNameOnFail THEN
         ReadProperty = PropertyName
       END IF
-#ENDIF
     NEXT
   END IF
 END FUNCTION

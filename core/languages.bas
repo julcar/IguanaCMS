@@ -12,5 +12,5 @@ SUB LoadLanguage(ModuleName AS STRING)
 END SUB
 
 FUNCTION Language(Key AS STRING) AS STRING
-  Language = ReadProperty(ArrayLanguage(), Key)
+  Language = ReadProperty(ArrayLanguage(), Key, -1)
 END FUNCTION

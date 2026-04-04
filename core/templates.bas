@@ -70,7 +70,7 @@ SUB LoadTemplate(ModuleName AS STRING)
 END SUB
 
 FUNCTION ReadTemplate(SnippetName AS STRING) AS STRING
-  ReadTemplate = SnippetParser(ReadProperty(ArraySnippets(), SnippetName))
+  ReadTemplate = SnippetParser(ReadProperty(ArraySnippets(), SnippetName, -1))
 END FUNCTION
 
 SUB ClearSnippets()

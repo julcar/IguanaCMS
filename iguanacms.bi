@@ -32,7 +32,7 @@ DECLARE SUB WriteFile(FilePath AS STRING, FileContent AS STRING)
 'Pseudo-Objetcs
 '##############################
 DECLARE SUB CreateProperty(ArrayProperties() AS DataField, PropertyName AS STRING, PropertyValue AS STRING)
-DECLARE FUNCTION ReadProperty(ArrayProperties() AS DataField, PropertyName AS STRING) AS STRING
+DECLARE FUNCTION ReadProperty(ArrayProperties() AS DataField, PropertyName AS STRING, ReturnNameOnFail AS LONG = 0) AS STRING
 DECLARE SUB UpdateProperty(ArrayProperties() AS DataField, PropertyName AS STRING, PropertyValue AS STRING)
 DECLARE SUB ClearProperties(ArrayProperties() AS DataField)
 DECLARE FUNCTION LoadDataFile(FilePath AS STRING) AS STRING

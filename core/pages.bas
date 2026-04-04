@@ -18,7 +18,7 @@ SUB CreatePageProperty(PropertyName AS STRING, PropertyValue AS STRING)
 END SUB
 
 FUNCTION ReadPage(PropertyName AS STRING) AS STRING
-  ReadPage = ReadProperty(PageProperties(), PropertyName)
+  ReadPage = ReadProperty(PageProperties(), PropertyName, -1)
 END FUNCTION
 
 SUB ClearPageProperties()
