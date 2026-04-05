@@ -119,13 +119,6 @@ DECLARE SUB LoadBBCodes()
 DECLARE FUNCTION CodeParser(Content AS STRING) AS STRING
 
 '##############################
-'Mails
-'##############################
-DECLARE SUB SendMail(ToAddress AS STRING, ToName AS STRING, _
-                     FromAddress AS STRING, FromName AS STRING, _
-                     Subject AS STRING, Body AS STRING)
-
-'##############################
 'MultiSites
 '##############################
 DECLARE SUB LoadSites()
