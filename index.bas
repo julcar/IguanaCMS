@@ -48,12 +48,12 @@ IF ReadGlobal("document_content") = "403" THEN
   UpdateGlobalProperty("document_content", ReadTemplate("403"))
 END IF
 
-IF NOT LEN(ReadGlobal("document_content")) THEN
+IF LEN(ReadGlobal("document_content")) = 0 THEN
   'Display error 404
   UpdateGlobalProperty("document_content", ReadTemplate("404"))
 END IF
 
-IF NOT LEN(ReadGlobal("document_title")) THEN
+IF LEN(ReadGlobal("document_title")) = 0 THEN
   UpdateGlobalProperty("document_title", GetSettings("description"))
 END IF
 

@@ -349,7 +349,7 @@ SUB LoadUsersInterface()
               LastError = Language("error_user_not_registered")
             END IF
           END IF
-          IF LEN(LastError) OR NOT LEN(ReadGlobal("document_content")) THEN
+          IF LEN(LastError) OR LEN(ReadGlobal("document_content")) = 0 THEN
             CreateGlobalProperty("last_error_message", LastError)
             CreateGlobalProperty("document_content", ReadTemplate("login"))
           END IF
@@ -403,7 +403,7 @@ SUB LoadUsersInterface()
           ELSE
             LastError = Language("error_user_name_empty")
           END IF
-          IF LEN(LastError) OR NOT LEN(ReadGlobal("document_content")) THEN
+          IF LEN(LastError) OR LEN(ReadGlobal("document_content")) = 0 THEN
             CreateGlobalProperty("last_error_message", LastError)
             CreateGlobalProperty("document_content", ReadTemplate("register"))
           END IF
@@ -500,7 +500,7 @@ SUB LoadUsersInterface()
             END IF
           END IF
         END IF
-        IF LEN(LastError) OR NOT LEN(ReadGlobal("document_content")) THEN
+        IF LEN(LastError) OR LEN(ReadGlobal("document_content")) = 0 THEN
           CreateGlobalProperty("last_error_message", LastError)
           CreateGlobalProperty("document_content", ReadTemplate("reset-password"))
           ClearUserProperties()
@@ -547,7 +547,7 @@ SUB LoadUsersInterface()
         LastError = Language("error_session_not_exists")
       END IF
     END IF
-    IF LEN(LastError) OR NOT LEN(ReadGlobal("document_content")) THEN
+    IF LEN(LastError) OR LEN(ReadGlobal("document_content")) = 0 THEN
       CreateGlobalProperty("document_title", Language("module_users_login"))
       CreateGlobalProperty("last_error_message", LastError)
       CreateGlobalProperty("document_content", ReadTemplate("login"))
