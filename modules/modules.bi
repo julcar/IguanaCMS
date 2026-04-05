@@ -26,3 +26,4 @@ DECLARE SUB RegisterLoader(LoaderPointer AS INTEGER)
 '##############################
 'Modules Includes
 '##############################
+#INCLUDE "users.bi"
