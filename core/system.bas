@@ -50,6 +50,9 @@ SUB InitLoad()
     LoadLanguage("main")
     LoadTemplate("main")
     RunLoaders()
+    'Initialize document placeholders
+    CreateGlobalProperty("document_title", "")
+    CreateGlobalProperty("document_content", "")
   END IF
 END SUB
   

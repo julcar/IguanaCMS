@@ -316,7 +316,7 @@ SUB LoadUsersInterface()
   IF LEN(Action) THEN
     SELECT CASE Action
       CASE "login"
-        CreateGlobalProperty("document_title", Language("module_users_login"))
+        UpdateGlobalProperty("document_title", Language("module_users_login"))
         IF IsAuth() THEN
           'Redirect to user panel
           SendHeader("Location", SiteUrl + CreateURL("module.users"))
@@ -335,7 +335,7 @@ SUB LoadUsersInterface()
                   CreateSession(UserAlias)
                   'Redirect to user panel
                   SendHeader("Refresh", STR(SECONDS_TO_WAIT) + ";" + SiteUrl + CreateURL("module.users"))
-                  CreateGlobalProperty("document_content", ReadTemplate("logged"))
+                  UpdateGlobalProperty("document_content", ReadTemplate("logged"))
                 ELSE
                   'The user is inactive or banned
                   LastError = Language("error_user_not_active")
@@ -351,26 +351,26 @@ SUB LoadUsersInterface()
           END IF
           IF LEN(LastError) OR LEN(ReadGlobal("document_content")) = 0 THEN
             CreateGlobalProperty("last_error_message", LastError)
-            CreateGlobalProperty("document_content", ReadTemplate("login"))
+            UpdateGlobalProperty("document_content", ReadTemplate("login"))
           END IF
         END IF
       CASE "logout"
         IF IsAuth() THEN
           IF ReadSession("session.token") <> "" THEN
             DeleteSession(ReadSession("session.token"))
-            CreateGlobalProperty("document_title", Language("module_users_control_panel"))
-            CreateGlobalProperty("document_content", ReadTemplate("logout"))
+            UpdateGlobalProperty("document_title", Language("module_users_control_panel"))
+            UpdateGlobalProperty("document_content", ReadTemplate("logout"))
             SendHeader("Refresh", STR(SECONDS_TO_WAIT) + ";" + SiteUrl)
           ELSE
-            CreateGlobalProperty("document_title", Language("module_users_login"))
+            UpdateGlobalProperty("document_title", Language("module_users_login"))
             CreateGlobalProperty("last_error_message", Language("error_session_not_exists"))
-            CreateGlobalProperty("document_content", ReadTemplate("login"))
+            UpdateGlobalProperty("document_content", ReadTemplate("login"))
           END IF
         ELSE
-          CreateGlobalProperty("document_content", "403")
+          UpdateGlobalProperty("document_content", "403")
         END IF
       CASE "register"
-        CreateGlobalProperty("document_title", Language("module_users_register"))
+        UpdateGlobalProperty("document_title", Language("module_users_register"))
         IF IsAuth() THEN
           'Redirect to user panel
           SendHeader("Location", SiteUrl + CreateURL("module.users"))
@@ -393,7 +393,7 @@ SUB LoadUsersInterface()
                 ClearURLProperties()
                 'Send activation link
                 SendMail(UserEmail, UserAlias, GetSettings("site_email"), GetSettings("site_title"), ReadGlobal("document_title"), TempContent)
-                CreateGlobalProperty("document_content", ReadTemplate("registered"))
+                UpdateGlobalProperty("document_content", ReadTemplate("registered"))
               ELSE
                 LastError = Language("error_password_too_short")
               END IF
@@ -405,7 +405,7 @@ SUB LoadUsersInterface()
           END IF
           IF LEN(LastError) OR LEN(ReadGlobal("document_content")) = 0 THEN
             CreateGlobalProperty("last_error_message", LastError)
-            CreateGlobalProperty("document_content", ReadTemplate("register"))
+            UpdateGlobalProperty("document_content", ReadTemplate("register"))
           END IF
         END IF
       CASE "change-password"
@@ -435,14 +435,14 @@ SUB LoadUsersInterface()
               LastError = Language("error_wrong_password")
             END IF
           END IF
-          CreateGlobalProperty("document_title", Language("module_users_change_password"))
+          UpdateGlobalProperty("document_title", Language("module_users_change_password"))
           CreateGlobalProperty("last_error_message", LastError)
-          CreateGlobalProperty("document_content", ReadTemplate("change-password"))
+          UpdateGlobalProperty("document_content", ReadTemplate("change-password"))
         ELSE
-          CreateGlobalProperty("document_content", "403")
+          UpdateGlobalProperty("document_content", "403")
         END IF
       CASE "reset-password"
-        CreateGlobalProperty("document_title", Language("module_users_reset_password"))
+        UpdateGlobalProperty("document_title", Language("module_users_reset_password"))
         UserAlias = GetURLParam("username", 3)
         IF LEN(UserAlias) THEN
           IF LoadUser(UserAlias) THEN
@@ -456,7 +456,7 @@ SUB LoadUsersInterface()
                   Salt = RandomString(SALT_LENGTH)
                   'Activate user if is inactive
                   UpdateUser(UserAlias, Salt + "+" + SHA256(Salt + UserPassword), , , , -1)
-                  CreateGlobalProperty("document_content", ReadTemplate("reset-password-changed"))
+                  UpdateGlobalProperty("document_content", ReadTemplate("reset-password-changed"))
                 ELSE
                   'New password is too short
                   LastError = Language("error_password_too_short")
@@ -466,7 +466,7 @@ SUB LoadUsersInterface()
                 CreateUrlProperty("useralias", UserAlias)
                 CreateUrlProperty("usertoken", UserToken)
                 CreateGlobalProperty("last_error_message", LastError)
-                CreateGlobalProperty("document_content", ReadTemplate("reset-password-change-form"))
+                UpdateGlobalProperty("document_content", ReadTemplate("reset-password-change-form"))
                 ClearUrlProperties()
               END IF
             ELSE
@@ -494,7 +494,7 @@ SUB LoadUsersInterface()
               SendMail(UserEmail, UserAlias, GetSettings("site_email"), GetSettings("site_title"), ReadGlobal("document_title"), TempContent)
               'Hide user email
               CreateGlobalProperty("hidden_email", HideUserEmail(UserEmail))
-              CreateGlobalProperty("document_content", ReadTemplate("reset-password-request-sent"))
+              UpdateGlobalProperty("document_content", ReadTemplate("reset-password-request-sent"))
             ELSE
               LastError = Language("error_user_not_registered")
             END IF
@@ -502,7 +502,7 @@ SUB LoadUsersInterface()
         END IF
         IF LEN(LastError) OR LEN(ReadGlobal("document_content")) = 0 THEN
           CreateGlobalProperty("last_error_message", LastError)
-          CreateGlobalProperty("document_content", ReadTemplate("reset-password"))
+          UpdateGlobalProperty("document_content", ReadTemplate("reset-password"))
           ClearUserProperties()
         END IF
       CASE "activate"
@@ -524,12 +524,12 @@ SUB LoadUsersInterface()
         ELSE
           LastError = Language("error_user_not_registered")
         END IF
-        CreateGlobalProperty("document_title", Language("module_users_login"))
+        UpdateGlobalProperty("document_title", Language("module_users_login"))
         CreateGlobalProperty("last_error_message", LastError)
-        CreateGlobalProperty("document_content", ReadTemplate("login"))
+        UpdateGlobalProperty("document_content", ReadTemplate("login"))
       CASE "oauth-login"
         CheckTable("oauth_logins", OAUTH_LOGINS_TABLE_FIELDS)
-        CreateGlobalProperty("document_title", Language("module_users_oauth_login"))
+        UpdateGlobalProperty("document_title", Language("module_users_oauth_login"))
         'Delegate management to OAuth library
         'OAuthLogin(GetUrlParam("oauth-provider", 3))
     END SELECT
@@ -537,9 +537,9 @@ SUB LoadUsersInterface()
     IF GetCookie(SESSION_NAME) <> "" THEN
       IF IsAuth() THEN
         IF VALINT(ReadUser("user.active")) THEN
-          CreateGlobalProperty("document_title", Language("module_users_control_panel"))
+          UpdateGlobalProperty("document_title", Language("module_users_control_panel"))
           CreateGlobalProperty("users_options_menu", ListUserModules())
-          CreateGlobalProperty("document_content", ReadTemplate("user"))
+          UpdateGlobalProperty("document_content", ReadTemplate("user"))
         ELSE
           LastError = Language("error_user_not_active") + ReadSession("session.user")
         END IF
@@ -548,9 +548,9 @@ SUB LoadUsersInterface()
       END IF
     END IF
     IF LEN(LastError) OR LEN(ReadGlobal("document_content")) = 0 THEN
-      CreateGlobalProperty("document_title", Language("module_users_login"))
+      UpdateGlobalProperty("document_title", Language("module_users_login"))
       CreateGlobalProperty("last_error_message", LastError)
-      CreateGlobalProperty("document_content", ReadTemplate("login"))
+      UpdateGlobalProperty("document_content", ReadTemplate("login"))
     END IF
   END IF
 END SUB

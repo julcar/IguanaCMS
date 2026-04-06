@@ -22,8 +22,8 @@ IF Request <> "" THEN
       PageName = GetSettings("index_page")
     END IF
     IF LoadPage(PageName) THEN
-      CreateGlobalProperty("document_title", ReadPage("title"))
-      CreateGlobalProperty("document_content", ReadTemplate("page"))
+      UpdateGlobalProperty("document_title", ReadPage("title"))
+      UpdateGlobalProperty("document_content", ReadTemplate("page"))
     END IF
   ELSE
     'Load any other module
@@ -35,8 +35,8 @@ ELSE
     CASE "page"
       PageName = GetSettings("index_page")
       IF LoadPage(PageName) THEN
-        CreateGlobalProperty("document_title", ReadPage("title"))
-        CreateGlobalProperty("document_content", ReadTemplate("page"))
+        UpdateGlobalProperty("document_title", ReadPage("title"))
+        UpdateGlobalProperty("document_content", ReadTemplate("page"))
       END IF
     CASE "module"
       LoadModule(GetSettings("index_module"))
