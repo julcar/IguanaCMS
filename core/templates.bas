@@ -1,5 +1,8 @@
 #INCLUDE "../iguanacms.bi"
 
+CONST AS STRING OPENING_TAG = "<%="
+CONST AS STRING CLOSING_TAG = "%>"
+
 DIM SHARED ArraySnippets() AS DataField
 
 FUNCTION ExpandObject(ObjectExpr AS STRING) AS STRING
@@ -38,15 +41,17 @@ FUNCTION SnippetParser(SnippetContent AS STRING) AS STRING
   DIM AS ULONG StartPos = 1, NextPos, FoundPos = StartPos
   DIM AS STRING ObjectExpr, Result
   WHILE FoundPos
-    FoundPos = INSTR(StartPos, SnippetContent, "<%= ")
+    FoundPos = INSTR(StartPos, SnippetContent, OPENING_TAG)
     IF FoundPos THEN
       Result += MID(SnippetContent, StartPos, FoundPos - StartPos)
-      StartPos = FoundPos + LEN("<%= ")
-      NextPos = INSTR(StartPos, SnippetContent, " %>")
+      StartPos = FoundPos + LEN(OPENING_TAG)
+      NextPos = INSTR(StartPos, SnippetContent, CLOSING_TAG)
       ObjectExpr = MID(SnippetContent, StartPos, NextPos - StartPos)
+      'Get rid of white spaces (if any)
+      ObjectExpr = LTRIM(RTRIM(ObjectExpr))
       'Expand object expression
       Result += ExpandObject(ObjectExpr)
-      StartPos = NextPos + LEN(" %>")
+      StartPos = NextPos + LEN(CLOSING_TAG)
     ELSE
       Result += MID(SnippetContent, StartPos, LEN(SnippetContent) - StartPos + 1)
     END IF
