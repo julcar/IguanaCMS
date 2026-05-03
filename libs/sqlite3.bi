@@ -17,4 +17,7 @@ EXTERN "c"
     BYVAL CallBackArg AS INTEGER = 0, _
     BYREF ErrorMessage AS ZSTRING PTR PTR = 0 _
   ) AS LONG
+  
+  'SQLite 3.x get last row id after insert
+  DECLARE FUNCTION sqlite3_last_insert_rowid(BYVAL FileHandle AS INTEGER) AS INTEGER
 END EXTERN

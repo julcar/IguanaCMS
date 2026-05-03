@@ -127,6 +127,10 @@ FUNCTION FetchData(sSQL AS STRING) AS DataSet
   END IF
 END FUNCTION
 
+FUNCTION GetLastRowId() AS INTEGER
+  GetLastRowId = sqlite3_last_insert_rowid(DB_Handler)
+END FUNCTION
+
 FUNCTION TableExists(TableName AS STRING) AS LONG
   DIM sSQL AS STRING, TableDST AS DataSet
   sSQL = "SELECT [name] FROM [sqlite_master] WHERE [type] = 'table' AND [name] = @TableName"
