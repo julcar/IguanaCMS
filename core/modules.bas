@@ -68,7 +68,7 @@ FUNCTION ReadModule(ObjectExpr AS STRING) AS STRING
   IF ModuleIndex >= 0 THEN
     FOR i AS LONG = 0 TO ModuleIndex
       IF ObjectName = CompiledModules(i).Name THEN
-        ModuleProperties = CPTR(FUNCTION(AS STRING) AS STRING, CompiledModules(i).VarsFunction)
+        ModuleProperties = CPTR(FUNCTION(AS STRING) AS STRING, CompiledModules(i).PropertiesFunction)
         IF ModuleProperties > 0 THEN
           Result = ModuleProperties(EvalExpr)
         ELSE

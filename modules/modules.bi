@@ -11,7 +11,7 @@ TYPE IguanaModule
   HasOwnTemplate AS LONG
   MainLoader AS INTEGER
   AdminLoader AS INTEGER
-  VarsFunction AS INTEGER
+  PropertiesFunction AS INTEGER
 END TYPE
 
 '##############################

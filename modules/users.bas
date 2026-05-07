@@ -570,7 +570,7 @@ WITH CurrentModule
   .Name = ModuleName
   .ListedForUser = 0
   .MainLoader = CINT(ProcPtr(LoadUsersInterface))
-  .VarsFunction = CINT(ProcPtr(ReadUserData))
+  .PropertiesFunction = CINT(ProcPtr(ReadUserData))
 END WITH
 
 RegisterModule(CurrentModule)
